@@ -1,13 +1,5 @@
+import visibilityFilter from '../../src/reducer/visibility-filter';
 import deepFreeze from 'deep-freeze';
-
-const visibilityFilter = (state = 'SHOW_ALL', action) => {
-    switch (action.type) {
-        case 'SET_VISIBILITY_FILTER':
-            return action.filter;
-        default:
-            return state;
-    }
-};
 
 test('sets initial state', () => {
     const stateBefore = undefined;
