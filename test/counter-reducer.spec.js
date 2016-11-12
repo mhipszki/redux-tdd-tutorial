@@ -1,4 +1,7 @@
 const counter = (state, action) => {
+    if (typeof state === 'undefined') {
+        return 0;
+    }
     if (action.type === 'INCREMENT') {
         return state + 1;
     } else if (action.type === 'DECREMENT') {
@@ -20,4 +23,8 @@ test('decrements state', () => {
 
 test('returns current state when receives unknown action type', () => {
     expect(counter(0, { type: 'UNKNOWN' })).toBe(0);
+});
+
+test('returns inital state when receives undefined state', () => {
+    expect(counter(undefined, {})).toBe(0);
 });
