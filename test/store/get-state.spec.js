@@ -1,7 +1,4 @@
-const createStore = () => {
-    const getState = () => {};
-    return { getState };
-};
+import { createStore } from '../../src/store';
 
 test('method is exposed', () => {
     const store = createStore();
