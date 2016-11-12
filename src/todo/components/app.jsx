@@ -1,7 +1,8 @@
 import React from 'react';
 
+let nextTodoId = 0;
+
 const TodoApp = ({ store }) => {
-    let nextTodoId = 0;
     const onClick = () => {
         store.dispatch({
             type: 'ADD_TODO',
@@ -9,9 +10,15 @@ const TodoApp = ({ store }) => {
             text: 'Test'
         });
     };
+    const todos = store.getState().todos.map(todo => (
+        <li key={todo.id}>{todo.text}</li>
+    ));
     return (
         <div>
             <button onClick={onClick}>Add todo</button>
+            <ul>
+                {todos}
+            </ul>
         </div>
     );
 };

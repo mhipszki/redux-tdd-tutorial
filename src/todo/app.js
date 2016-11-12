@@ -8,7 +8,7 @@ const store = createStore(appReducer);
 
 const render = () => {
     ReactDOM.render(
-        <TodoApp/>,
+        <TodoApp store={store}/>,
         document.getElementById('root')
     );
 };
