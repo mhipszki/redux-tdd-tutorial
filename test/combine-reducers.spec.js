@@ -72,3 +72,36 @@ test('can combine multiple levels of reducers', () => {
     const reducer = combineReducers({ one, two });
     expect(reducer(stateBefore, action)).toEqual(stateAfter);
 });
+
+test('multi level combined reducer updates given part of state', () => {
+    const stateBefore = {
+        one: 1,
+        two: {
+            three: 3,
+            four: 4
+        }
+    };
+    const action = {
+        type: 'INCREASE_FOUR'
+    };
+    const stateAfter = {
+        one: 1,
+        two: {
+            three: 3,
+            four: 5
+        }
+    };
+    const one = (state = 1, action) => state;
+    const three = (state = 3, action) => state;
+    const four = (state = 4, action) => {
+        switch (action.type) {
+            case 'INCREASE_FOUR':
+                return state + 1;
+            default:
+                return state;
+        }
+    };
+    const two = combineReducers({ three, four });
+    const reducer = combineReducers({ one, two });
+    expect(reducer(stateBefore, action)).toEqual(stateAfter);
+});
