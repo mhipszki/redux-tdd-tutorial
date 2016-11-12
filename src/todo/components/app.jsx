@@ -2,7 +2,7 @@ import React from 'react';
 
 const TodoApp = () => (
     <div>
-        <button></button>
+        <button>Add todo</button>
     </div>
 );
 
