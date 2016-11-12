@@ -1,4 +1,4 @@
-import todos from '../src/todos-reducer';
+import todos from '../../src/reducer/todos';
 import deepFreeze from 'deep-freeze';
 
 test('can add a todo to the list', () => {

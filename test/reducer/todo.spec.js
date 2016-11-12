@@ -1,4 +1,4 @@
-import todo from '../src/todo-reducer';
+import todo from '../../src/reducer/todo';
 import deepFreeze from 'deep-freeze';
 
 test('can create a new todo', () => {
