@@ -29,3 +29,28 @@ test('combined reducer sets initial state', () => {
     const reducer = combineReducers({ one, two });
     expect(reducer(stateBefore, action)).toEqual(stateAfter);
 });
+
+test('combined reducer updates given part of state', () => {
+    const stateBefore = {
+        one: 1,
+        two: 2
+    };
+    const action = {
+        type: 'INCREASE_ONE'
+    };
+    const stateAfter = {
+        one: 2,
+        two: 2
+    };
+    const one = (state = 1, action) => {
+        switch (action.type) {
+            case 'INCREASE_ONE':
+                return state + 1;
+            default:
+                return state;
+        }
+    };
+    const two = (state = 2, action) => state;
+    const reducer = combineReducers({ one, two });
+    expect(reducer(stateBefore, action)).toEqual(stateAfter);
+});
