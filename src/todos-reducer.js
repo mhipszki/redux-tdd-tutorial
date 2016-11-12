@@ -1,23 +1,18 @@
+import todo from './todo-reducer';
+
 const todos = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return [
                 ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    completed: false
-                }
+                todo(undefined, action)
             ];
         case 'TOGGLE_TODO':
-            return state.map(todo => {
-                if (todo.id !== action.id) {
-                    return todo;
+            return state.map(t => {
+                if (t.id !== action.id) {
+                    return t;
                 }
-                return {
-                    ...todo,
-                    completed: !todo.completed
-                }
+                return todo(t, action);
             });
         default:
             return state;
