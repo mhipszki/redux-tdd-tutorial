@@ -1,8 +1,14 @@
 import React from 'react';
 
-const TodoApp = () => (
+const TodoApp = ({ store }) => (
     <div>
-        <button>Add todo</button>
+        <button onClick={() => {
+                store.dispatch({
+                    type: 'ADD_TODO',
+                    id: 0,
+                    text: 'Test'
+                });
+            }}>Add todo</button>
     </div>
 );
 
