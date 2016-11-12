@@ -1,3 +1,5 @@
+import deepFreeze from 'deep-freeze';
+
 const todos = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
@@ -26,5 +28,7 @@ test('can add a todo to the list', () => {
         text: 'first thing to do',
         completed: false
     }];
+    deepFreeze(stateBefore)
+    deepFreeze(action);
     expect(todos(stateBefore, action)).toEqual(stateAfter);
 });
