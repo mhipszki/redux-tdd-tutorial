@@ -21,6 +21,9 @@ const TodoApp = ({ store }) => {
                     id: todo.id
                 });
             }}
+            style={{
+                textDecoration: todo.completed ? 'line-through' : 'none'
+            }}
         >{todo.text}</li>
     ));
     return (

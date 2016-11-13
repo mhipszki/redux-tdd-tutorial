@@ -17,3 +17,18 @@ test('toggles completed on click', () => {
     const todos = store.getState().todos;
     expect(todos[0].completed).toBe(true);
 });
+
+test('is crossed when completed', () => {
+    const store = createStore(reducer);
+    const app = mount(<TodoApp store={store} />);
+    const input = app.find('input');
+    const button = app.find('button');
+    input.node.value = 'New Todo';
+    button.simulate('click');
+    app.update();
+    const todo = app.find('li').first();
+    expect(todo.prop('style').textDecoration).toBe('none');
+    todo.simulate('click');
+    app.update();
+    expect(todo.prop('style').textDecoration).toBe('line-through');
+});
