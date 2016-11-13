@@ -65,8 +65,17 @@ test('renders the list of todos', () => {
 test('shows a filter link to show all todos', () => {
     const store = createStore(reducer);
     const app = shallow(<TodoApp store={store} />);
-    const link = app.find('FilterLink').first();
+    const link = app.find('FilterLink').at(0);
     expect(link.prop('store')).toBe(store);
     expect(link.prop('filter')).toEqual('SHOW_ALL');
     expect(link.render().text()).toEqual('All');
+});
+
+test('shows a filter link to show active todos', () => {
+    const store = createStore(reducer);
+    const app = shallow(<TodoApp store={store} />);
+    const link = app.find('FilterLink').at(1);
+    expect(link.prop('store')).toBe(store);
+    expect(link.prop('filter')).toEqual('SHOW_ACTIVE');
+    expect(link.render().text()).toEqual('Active');
 });

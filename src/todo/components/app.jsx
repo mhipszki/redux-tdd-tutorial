@@ -38,6 +38,7 @@ const TodoApp = ({ store }) => {
             </ul>
             <p>
                 <FilterLink store={store} filter="SHOW_ALL">All</FilterLink>
+                <FilterLink store={store} filter="SHOW_ACTIVE">Active</FilterLink>
             </p>
         </div>
     );
