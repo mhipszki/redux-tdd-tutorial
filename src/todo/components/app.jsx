@@ -12,18 +12,20 @@ const TodoApp = ({ store }) => {
         });
         input.value = '';
     };
+    const toggleTodo = (id) => () => {
+        store.dispatch({
+            type: 'TOGGLE_TODO',
+            id: id
+        });
+    };
+    const todoStyle = (completed) => ({
+        textDecoration: completed ? 'line-through' : 'none'
+    });
     const todos = store.getState().todos.map(todo => (
         <li
             key={todo.id}
-            onClick={() => {
-                store.dispatch({
-                    type: 'TOGGLE_TODO',
-                    id: todo.id
-                });
-            }}
-            style={{
-                textDecoration: todo.completed ? 'line-through' : 'none'
-            }}
+            onClick={toggleTodo(todo.id)}
+            style={todoStyle(todo.completed)}
         >{todo.text}</li>
     ));
     return (
