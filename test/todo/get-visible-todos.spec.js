@@ -33,3 +33,13 @@ test('returns active todos when receives SHOW_ACTIVE filter', () => {
         completed: false
     }]);
 });
+
+test('returns all todos when receives unknown filter', () => {
+    const allTodos = [{
+        completed: false
+    },{
+        completed: true
+    }];
+    const todos = getVisibleTodos(allTodos, 'UNKNOWN');
+    expect(todos).toEqual(allTodos);
+});
