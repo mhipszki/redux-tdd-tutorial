@@ -62,22 +62,16 @@ test('clears input after adding a todo', () => {
 });
 
 test('renders the list of todos', () => {
-    let app;
-
     const store = createStore(reducer);
-    const render = () => mount(<TodoApp store={store} />);
+    const app = mount(<TodoApp store={store} />);
     const addTodo = () => app.find('button').simulate('click');
     const list = () => app.find('li');
 
-    app = render();
-
     addTodo();
-
-    app = render();
+    app.update();
     expect(list().length).toBe(1);
 
     addTodo();
-
-    app = render();
+    app.update();
     expect(list().length).toBe(2);
 });
