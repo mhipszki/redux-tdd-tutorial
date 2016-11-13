@@ -9,7 +9,7 @@ const getVisibleTodos = (todos, filter) => {
     }
 };
 
-test.only('returns all todos when receives SHOW_ALL filter', () => {
+test('returns all todos when receives SHOW_ALL filter', () => {
     const allTodos = [{
         completed: false
     },{
@@ -19,7 +19,7 @@ test.only('returns all todos when receives SHOW_ALL filter', () => {
     expect(todos).toEqual(allTodos);
 });
 
-test.only('returns completed todos when receives SHOW_COMPLETED filter', () => {
+test('returns completed todos when receives SHOW_COMPLETED filter', () => {
     const allTodos = [{
         completed: false
     },{
@@ -31,7 +31,7 @@ test.only('returns completed todos when receives SHOW_COMPLETED filter', () => {
     }]);
 });
 
-test.only('returns active todos when receives SHOW_ACTIVE filter', () => {
+test('returns active todos when receives SHOW_ACTIVE filter', () => {
     const allTodos = [{
         completed: false
     },{
