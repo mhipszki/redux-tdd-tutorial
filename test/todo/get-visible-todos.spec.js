@@ -1,13 +1,4 @@
-const getVisibleTodos = (todos, filter) => {
-    switch (filter) {
-        case 'SHOW_ALL':
-            return todos;
-        case 'SHOW_COMPLETED':
-            return todos.filter(t => t.completed);
-        case 'SHOW_ACTIVE':
-            return todos.filter(t => !t.completed);
-    }
-};
+import getVisibleTodos from '../../src/todo/get-visible-todos';
 
 test('returns all todos when receives SHOW_ALL filter', () => {
     const allTodos = [{
