@@ -17,20 +17,6 @@ test('renders a button to add todos', () => {
     expect(button.render().text()).toBe('Add todo');
 });
 
-test('adds a new todo when the button is clicked', () => {
-    const store = createStore(reducer);
-    const app = mount(<TodoApp store={store} />);
-    const input = app.find('input');
-    const button = app.find('button');
-    input.node.value = 'New Todo';
-    button.simulate('click');
-    expect(store.getState().todos).toEqual([{
-        id: 0,
-        text: 'New Todo',
-        completed: false
-    }]);
-});
-
 test('adds a new todo each time the button is clicked', () => {
     const store = createStore(reducer);
     const app = mount(<TodoApp store={store} />);
@@ -41,11 +27,11 @@ test('adds a new todo each time the button is clicked', () => {
     input.node.value = 'Another Todo';
     button.simulate('click');
     expect(store.getState().todos).toEqual([{
-        id: 1,
+        id: 0,
         text: 'New Todo',
         completed: false
     },{
-        id: 2,
+        id: 1,
         text: 'Another Todo',
         completed: false
     }]);
