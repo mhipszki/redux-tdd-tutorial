@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 const FilterLink = ({ children }) => (
-    <a>{children}</a>
+    <a href="#">{children}</a>
 );
 
 test('renders an anchor', () => {
@@ -13,4 +13,9 @@ test('renders an anchor', () => {
 test('renders its children', () => {
     const link = shallow(<FilterLink>children</FilterLink>)
     expect(link.render().text()).toEqual('children');
+});
+
+test('points to the same page', () => {
+    const link = shallow(<FilterLink>children</FilterLink>)
+    expect(link.prop('href')).toEqual('#');
 });
