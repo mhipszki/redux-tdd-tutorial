@@ -1,5 +1,6 @@
 import React from 'react';
 import FilterLink from './filter-link';
+import getVisibleTodos from '../get-visible-todos';
 
 let nextTodoId = 0;
 
@@ -22,7 +23,11 @@ const TodoApp = ({ store }) => {
     const todoStyle = (completed) => ({
         textDecoration: completed ? 'line-through' : 'none'
     });
-    const todos = store.getState().todos.map(todo => (
+    const visibleTodos = getVisibleTodos(
+        store.getState().todos,
+        store.getState().visibilityFilter
+    );
+    const todos = visibleTodos.map(todo => (
         <li
             key={todo.id}
             onClick={toggleTodo(todo.id)}

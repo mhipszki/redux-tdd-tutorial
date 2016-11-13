@@ -88,3 +88,41 @@ test('shows a filter link to show completed todos', () => {
     expect(link.prop('filter')).toEqual('SHOW_COMPLETED');
     expect(link.render().text()).toEqual('Completed');
 });
+
+test('shows all todos when Show All filter is selected', () => {
+    const store = createStore(reducer);
+    store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
+    store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
+    store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
+    const app = mount(<TodoApp store={store} />);
+    const showAll = app.find('FilterLink').at(0);
+    showAll.simulate('click');
+    app.update();
+    expect(app.find('li').length).toBe(2);
+});
+
+test('shows active todos when Show Active filter is selected', () => {
+    const store = createStore(reducer);
+    store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
+    store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
+    store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
+    const app = mount(<TodoApp store={store} />);
+    const showActive = app.find('FilterLink').at(1);
+    showActive.simulate('click');
+    app.update();
+    expect(app.find('li').length).toBe(1);
+    expect(app.find('li').render().text()).toBe('todo 1');
+});
+
+test('shows completed todos when Show Completed filter is selected', () => {
+    const store = createStore(reducer);
+    store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
+    store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
+    store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
+    const app = mount(<TodoApp store={store} />);
+    const showCompleted = app.find('FilterLink').at(2);
+    showCompleted.simulate('click');
+    app.update();
+    expect(app.find('li').length).toBe(1);
+    expect(app.find('li').render().text()).toBe('todo 2');
+});
