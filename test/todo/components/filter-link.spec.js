@@ -1,16 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { createStore } from 'redux';
+import FilterLink from '../../../src/todo/components/filter-link';
 import visibilityFilter from '../../../src/reducer/visibility-filter';
-
-const FilterLink = ({ store, filter, children }) => (
-    <a href="#" onClick={() => {
-        store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter: filter
-        })
-    }}>{children}</a>
-);
 
 const store = createStore(visibilityFilter);
 
