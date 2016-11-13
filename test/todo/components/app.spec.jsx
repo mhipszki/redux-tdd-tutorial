@@ -51,6 +51,16 @@ test('adds a new todo each time the button is clicked', () => {
     }]);
 });
 
+test('clears input after adding a todo', () => {
+    const store = createStore(reducer);
+    const app = mount(<TodoApp store={store} />);
+    const input = app.find('input');
+    const button = app.find('button');
+    input.node.value = 'New Todo';
+    button.simulate('click');
+    expect(input.node.value).toEqual('');
+});
+
 test('renders the list of todos', () => {
     let app;
 

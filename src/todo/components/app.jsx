@@ -10,6 +10,7 @@ const TodoApp = ({ store }) => {
             id: nextTodoId++,
             text: input.value
         });
+        input.value = '';
     };
     const todos = store.getState().todos.map(todo => (
         <li key={todo.id}>{todo.text}</li>
