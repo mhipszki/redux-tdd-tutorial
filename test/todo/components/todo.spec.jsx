@@ -4,29 +4,29 @@ import { createStore } from 'redux';
 import TodoApp from '../../../src/todo/components/app'
 import reducer from '../../../src/reducer/app';
 
-test('toggles completed on click', () => {
-    const store = createStore(reducer);
-    const app = mount(<TodoApp store={store} />);
-    const input = app.find('input');
-    const button = app.find('button');
-    input.node.value = 'New Todo';
-    button.simulate('click');
+let store;
+let app;
+let todo;
+
+beforeEach(() => {
+    store = createStore(reducer);
+    app = mount(<TodoApp store={store} />);
+    store.dispatch({
+        type: 'ADD_TODO',
+        id: 0,
+        text: 'new todo'
+    });
     app.update();
-    const todo = app.find('li').first();
+    todo = app.find('li').first();
+});
+
+test('toggles completed on click', () => {
     todo.simulate('click');
     const todos = store.getState().todos;
     expect(todos[0].completed).toBe(true);
 });
 
 test('is crossed when completed', () => {
-    const store = createStore(reducer);
-    const app = mount(<TodoApp store={store} />);
-    const input = app.find('input');
-    const button = app.find('button');
-    input.node.value = 'New Todo';
-    button.simulate('click');
-    app.update();
-    const todo = app.find('li').first();
     expect(todo.prop('style').textDecoration).toBe('none');
     todo.simulate('click');
     app.update();
