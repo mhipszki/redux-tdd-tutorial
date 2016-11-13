@@ -79,3 +79,12 @@ test('shows a filter link to show active todos', () => {
     expect(link.prop('filter')).toEqual('SHOW_ACTIVE');
     expect(link.render().text()).toEqual('Active');
 });
+
+test('shows a filter link to show completed todos', () => {
+    const store = createStore(reducer);
+    const app = shallow(<TodoApp store={store} />);
+    const link = app.find('FilterLink').at(2);
+    expect(link.prop('store')).toBe(store);
+    expect(link.prop('filter')).toEqual('SHOW_COMPLETED');
+    expect(link.render().text()).toEqual('Completed');
+});
