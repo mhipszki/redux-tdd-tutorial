@@ -61,3 +61,12 @@ test('renders the list of todos', () => {
     app.update();
     expect(list().length).toBe(2);
 });
+
+test('shows a filter link to show all todos', () => {
+    const store = createStore(reducer);
+    const app = shallow(<TodoApp store={store} />);
+    const link = app.find('FilterLink').first();
+    expect(link.prop('store')).toBe(store);
+    expect(link.prop('filter')).toEqual('SHOW_ALL');
+    expect(link.render().text()).toEqual('All');
+});

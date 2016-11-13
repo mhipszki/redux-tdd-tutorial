@@ -1,4 +1,5 @@
 import React from 'react';
+import FilterLink from './filter-link';
 
 let nextTodoId = 0;
 
@@ -35,6 +36,9 @@ const TodoApp = ({ store }) => {
             <ul>
                 {todos}
             </ul>
+            <p>
+                <FilterLink store={store} filter="SHOW_ALL">All</FilterLink>
+            </p>
         </div>
     );
 };
