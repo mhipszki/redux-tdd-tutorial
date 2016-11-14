@@ -64,39 +64,6 @@ test('toggles todos on click', () => {
     expect(store.getState().todos[0].completed).toBe(true);
 });
 
-test('shows a filter link to show all todos', () => {
-    const store = createStore(reducer);
-    const currentFilter = store.getState().visibilityFilter;
-    const app = shallow(<TodoApp store={store} />);
-    const link = app.find('FilterLink').at(0);
-    expect(link.prop('store')).toBe(store);
-    expect(link.prop('filter')).toEqual('SHOW_ALL');
-    expect(link.prop('currentFilter')).toEqual(currentFilter);
-    expect(link.render().text()).toEqual('All');
-});
-
-test('shows a filter link to show active todos', () => {
-    const store = createStore(reducer);
-    const currentFilter = store.getState().visibilityFilter;
-    const app = shallow(<TodoApp store={store} />);
-    const link = app.find('FilterLink').at(1);
-    expect(link.prop('store')).toBe(store);
-    expect(link.prop('filter')).toEqual('SHOW_ACTIVE');
-    expect(link.prop('currentFilter')).toEqual(currentFilter);
-    expect(link.render().text()).toEqual('Active');
-});
-
-test('shows a filter link to show completed todos', () => {
-    const store = createStore(reducer);
-    const currentFilter = store.getState().visibilityFilter;
-    const app = shallow(<TodoApp store={store} />);
-    const link = app.find('FilterLink').at(2);
-    expect(link.prop('store')).toBe(store);
-    expect(link.prop('filter')).toEqual('SHOW_COMPLETED');
-    expect(link.prop('currentFilter')).toEqual(currentFilter);
-    expect(link.render().text()).toEqual('Completed');
-});
-
 test('shows all todos when Show All filter is selected', () => {
     const store = createStore(reducer);
     store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
