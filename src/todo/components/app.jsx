@@ -2,6 +2,7 @@ import React from 'react';
 import FilterLink from './filter-link';
 import AddTodo from './add-todo';
 import TodoList from './todo-list';
+import Footer from './footer';
 import getVisibleTodos from '../get-visible-todos';
 
 let nextTodoId = 0;
@@ -29,27 +30,7 @@ const TodoApp = ({ store }) => {
         <div>
             <AddTodo onAddClick={onClick} />
             <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
-            <p>
-                Show
-                {' '}
-                <FilterLink
-                    store={store}
-                    filter="SHOW_ALL"
-                    currentFilter={currentFilter}
-                >All</FilterLink>
-                {' '}
-                <FilterLink
-                    store={store}
-                    filter="SHOW_ACTIVE"
-                    currentFilter={currentFilter}
-                >Active</FilterLink>
-                {' '}
-                <FilterLink
-                    store={store}
-                    filter="SHOW_COMPLETED"
-                    currentFilter={currentFilter}
-                >Completed</FilterLink>
-            </p>
+            <Footer store={store} currentFilter={currentFilter} />
         </div>
     );
 };

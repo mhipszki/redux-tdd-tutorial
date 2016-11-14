@@ -1,33 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Footer from '../../../src/todo/components/footer';
 
-const FilterLink = ({ children }) => (
-    <div>{ children }</div>
-);
-
-const Footer = ({ store, currentFilter }) => (
-    <p>
-        Show
-        {' '}
-        <FilterLink
-            store={store}
-            filter="SHOW_ALL"
-            currentFilter={currentFilter}
-        >All</FilterLink>
-        {' '}
-        <FilterLink
-            store={store}
-            filter="SHOW_ACTIVE"
-            currentFilter={currentFilter}
-        >Active</FilterLink>
-        {' '}
-        <FilterLink
-            store={store}
-            filter="SHOW_COMPLETED"
-            currentFilter={currentFilter}
-        >Completed</FilterLink>
-    </p>
-);
 
 const fakeStore = {};
 

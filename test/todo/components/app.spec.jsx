@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { createStore } from 'redux';
-import TodoApp from '../../../src/todo/components/app'
+import TodoApp from '../../../src/todo/components/app';
 import reducer from '../../../src/reducer/app';
 import getVisibleTodos from '../../../src/todo/get-visible-todos';
 
@@ -62,6 +62,16 @@ test('toggles todos on click', () => {
     const todo = app.find('Todo');
     todo.simulate('click');
     expect(store.getState().todos[0].completed).toBe(true);
+});
+
+test('renders footer with filter links', () => {
+    const store = createStore(reducer);
+    const app = shallow(<TodoApp store={store} />);
+    expect(app.find('Footer').length).toBe(1);
+    const footer = app.find('Footer');
+    expect(footer.prop('store')).toBe(store);
+    const currentFilter = store.getState().visibilityFilter;
+    expect(footer.prop('currentFilter')).toEqual(currentFilter);
 });
 
 test('shows all todos when Show All filter is selected', () => {
