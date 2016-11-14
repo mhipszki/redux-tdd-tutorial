@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-const Todo = ({ onClick }) => (
-    <li onClick={onClick}></li>
+const Todo = ({ onClick, text }) => (
+    <li onClick={onClick}>{text}</li>
 );
 
 test('renders a list element', () => {
@@ -15,4 +15,9 @@ test('handles click event', () => {
     const todo = shallow(<Todo onClick={onClick}/>);
     todo.simulate('click');
     expect(onClick).toBeCalled();
+});
+
+test('renders given text', () => {
+    const todo = shallow(<Todo text="todo"/>);
+    expect(todo.render().text()).toEqual('todo');
 });
