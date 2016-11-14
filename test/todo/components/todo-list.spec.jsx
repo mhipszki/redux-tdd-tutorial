@@ -25,3 +25,14 @@ test('renders a list of todos', () => {
     const todoItems = list.find('Todo');
     expect(todoItems.length).toBe(2);
 });
+
+test('passes all properties of the todo to the rendered Todo item', () => {
+    const todos = [{
+        id: 0,
+        text: 'todo 1'
+    }];
+    const list = render({ todos });
+    const todo = list.find('Todo');
+    expect(todo.prop('id')).toBe(0);
+    expect(todo.prop('text')).toBe('todo 1');
+});
