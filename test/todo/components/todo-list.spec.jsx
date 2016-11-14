@@ -2,9 +2,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TodoList from '../../../src/todo/components/todo-list';
 
-const render = ({ todos = [] } = {}) => {
+const render = ({
+    todos = [],
+    onTodoClick = () => {}
+} = {}) => {
     return shallow(
-        <TodoList todos={todos}></TodoList>
+        <TodoList todos={todos} onTodoClick={onTodoClick}></TodoList>
     );
 };
 
@@ -35,4 +38,16 @@ test('passes all properties of the todo to the rendered Todo item', () => {
     const todo = list.find('Todo');
     expect(todo.prop('id')).toBe(0);
     expect(todo.prop('text')).toBe('todo 1');
+});
+
+test('calls callback with id of todo when a Todo item is clicked', () => {
+    const todos = [{
+        id: 0,
+        text: 'todo 1'
+    }];
+    const onTodoClick = jest.fn();
+    const list = render({ todos, onTodoClick });
+    const todo = list.find('Todo');
+    todo.simulate('click');
+    expect(onTodoClick).toBeCalledWith(0);
 });
