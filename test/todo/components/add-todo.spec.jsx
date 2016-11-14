@@ -1,12 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
-const AddTodo = () => (
-    <div>
-        <input/>
-        <button>Add Todo</button>
-    </div>
-);
+const AddTodo = ({ onAddClick }) => {
+    let input;
+    return (
+        <div>
+            <input ref={node => input = node} />
+            <button onClick={() => {
+                onAddClick(input.value);
+            }}>Add Todo</button>
+        </div>
+    );
+};
 
 test('renders a text input', () => {
     const addTodo = shallow(<AddTodo/>);
@@ -19,4 +24,14 @@ test('renders a button to add a new todo', () => {
     const button = addTodo.find('button');
     expect(button.type()).toEqual('button');
     expect(button.render().text()).toEqual('Add Todo');
+});
+
+test('calls callback with input value when button is clicked', () => {
+    const onAddClick = jest.fn();
+    const addTodo = mount(<AddTodo onAddClick={onAddClick} />);
+    const input = addTodo.find('input');
+    const button = addTodo.find('button');
+    input.node.value = 'new todo';
+    button.simulate('click');
+    expect(onAddClick).toBeCalledWith('new todo');
 });
