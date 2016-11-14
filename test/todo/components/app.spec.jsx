@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { createStore } from 'redux';
 import TodoApp from '../../../src/todo/components/app'
 import reducer from '../../../src/reducer/app';
+import getVisibleTodos from '../../../src/todo/get-visible-todos';
 
 test('has an input to add todos', () => {
     const store = createStore(reducer);
@@ -47,19 +48,13 @@ test('clears input after adding a todo', () => {
     expect(input.node.value).toEqual('');
 });
 
-test('renders the list of todos', () => {
+test('renders the visible list of todos', () => {
     const store = createStore(reducer);
-    const app = mount(<TodoApp store={store} />);
-    const addTodo = () => app.find('button').simulate('click');
-    const todos = () => app.find('Todo');
-
-    addTodo();
-    app.update();
-    expect(todos().length).toBe(1);
-
-    addTodo();
-    app.update();
-    expect(todos().length).toBe(2);
+    const app = shallow(<TodoApp store={store} />);
+    const todoList = app.find('TodoList');
+    const { todos, visibilityFilter } = store.getState();
+    const visibleTodos = getVisibleTodos(todos, visibilityFilter);
+    expect(todoList.prop('todos')).toBe(visibleTodos);
 });
 
 test('shows a filter link to show all todos', () => {

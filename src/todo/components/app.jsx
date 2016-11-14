@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterLink from './filter-link';
-import Todo from './todo';
+import TodoList from './todo-list';
 import getVisibleTodos from '../get-visible-todos';
 
 let nextTodoId = 0;
@@ -15,7 +15,7 @@ const TodoApp = ({ store }) => {
         });
         input.value = '';
     };
-    const toggleTodo = (id) => () => {
+    const toggleTodo = id => {
         store.dispatch({
             type: 'TOGGLE_TODO',
             id: id
@@ -25,22 +25,12 @@ const TodoApp = ({ store }) => {
         store.getState().todos,
         store.getState().visibilityFilter
     );
-    const todos = visibleTodos.map(todo => (
-        <Todo
-            key={todo.id}
-            onClick={toggleTodo(todo.id)}
-            text={todo.text}
-            completed={todo.completed}
-        />
-    ));
     const currentFilter = store.getState().visibilityFilter;
     return (
         <div>
             <input ref={node => input = node} />
             <button onClick={onClick}>Add todo</button>
-            <ul>
-                {todos}
-            </ul>
+            <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
             <p>
                 Show
                 {' '}
