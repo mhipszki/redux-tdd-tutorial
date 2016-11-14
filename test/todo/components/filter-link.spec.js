@@ -6,15 +6,20 @@ import visibilityFilter from '../../../src/reducer/visibility-filter';
 
 const store = createStore(visibilityFilter);
 
-const render = () => shallow(
-    <FilterLink store={store} filter={'filter'}>
+const render = ({ currentFilter = 'current filter'} = {}) => shallow(
+    <FilterLink store={store} filter={'filter'} currentFilter={currentFilter}>
         filter name
     </FilterLink>
 );
 
-test('renders an anchor', () => {
+test('renders an anchor when filter is not current filter', () => {
     const link = render();
     expect(link.type()).toEqual('a');
+});
+
+it('renders simple text when filter is current filter', () => {
+    const link = render({ currentFilter: 'filter' });
+    expect(link.type()).toEqual('span');
 });
 
 test('renders its children', () => {
