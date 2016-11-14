@@ -34,6 +34,7 @@ const TodoApp = ({ store }) => {
             style={todoStyle(todo.completed)}
         >{todo.text}</li>
     ));
+    const currentFilter = store.getState().visibilityFilter;
     return (
         <div>
             <input ref={node => input = node} />
@@ -44,11 +45,23 @@ const TodoApp = ({ store }) => {
             <p>
                 Show
                 {' '}
-                <FilterLink store={store} filter="SHOW_ALL">All</FilterLink>
+                <FilterLink
+                    store={store}
+                    filter="SHOW_ALL"
+                    currentFilter={currentFilter}
+                >All</FilterLink>
                 {' '}
-                <FilterLink store={store} filter="SHOW_ACTIVE">Active</FilterLink>
+                <FilterLink
+                    store={store}
+                    filter="SHOW_ACTIVE"
+                    currentFilter={currentFilter}
+                >Active</FilterLink>
                 {' '}
-                <FilterLink store={store} filter="SHOW_COMPLETED">Completed</FilterLink>
+                <FilterLink
+                    store={store}
+                    filter="SHOW_COMPLETED"
+                    currentFilter={currentFilter}
+                >Completed</FilterLink>
             </p>
         </div>
     );
