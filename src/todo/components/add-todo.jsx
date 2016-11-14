@@ -7,6 +7,7 @@ const AddTodo = ({ onAddClick }) => {
             <input ref={node => input = node} />
             <button onClick={() => {
                 onAddClick(input.value);
+                input.value = '';
             }}>Add Todo</button>
         </div>
     );

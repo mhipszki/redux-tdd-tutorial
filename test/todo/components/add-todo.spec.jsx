@@ -24,3 +24,12 @@ test('calls callback with input value when button is clicked', () => {
     button.simulate('click');
     expect(onAddClick).toBeCalledWith('new todo');
 });
+
+test('clears input when button is clicked', () => {
+    const addTodo = mount(<AddTodo onAddClick={() => {}} />);
+    const input = addTodo.find('input');
+    const button = addTodo.find('button');
+    input.node.value = 'new todo';
+    button.simulate('click');
+    expect(input.node.value).toEqual('');
+});
