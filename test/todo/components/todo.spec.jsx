@@ -1,14 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-const Todo = ({ onClick, text, completed }) => {
-    const style = {
-        textDecoration: completed ? 'line-through' : 'none'
-    };
-    return (
-        <li onClick={onClick} style={style}>{text}</li>
-    );
-};
+import Todo from '../../../src/todo/components/todo';
 
 test('renders a list element', () => {
     const todo = shallow(<Todo/>);
