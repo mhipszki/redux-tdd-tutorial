@@ -1,9 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-const Todo = ({ onClick, text }) => (
-    <li onClick={onClick}>{text}</li>
-);
+const Todo = ({ onClick, text, completed }) => {
+    const style = {
+        textDecoration: completed ? 'line-through' : 'none'
+    };
+    return (
+        <li onClick={onClick} style={style}>{text}</li>
+    );
+};
 
 test('renders a list element', () => {
     const todo = shallow(<Todo/>);
@@ -20,4 +25,14 @@ test('handles click event', () => {
 test('renders given text', () => {
     const todo = shallow(<Todo text="todo"/>);
     expect(todo.render().text()).toEqual('todo');
+});
+
+test('is not crossed when not completed', () => {
+    const todo = shallow(<Todo completed={false}/>);
+    expect(todo.prop('style').textDecoration).toBe('none');
+});
+
+test('is crossed when completed', () => {
+    const todo = shallow(<Todo completed={true}/>);
+    expect(todo.prop('style').textDecoration).toBe('line-through');
 });
