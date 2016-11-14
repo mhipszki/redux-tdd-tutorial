@@ -13,7 +13,7 @@ const render = () => shallow(
 );
 
 test('renders an anchor', () => {
-    const link = shallow(<FilterLink/>)
+    const link = render();
     expect(link.type()).toEqual('a');
 });
 
