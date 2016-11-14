@@ -1,17 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
-const AddTodo = ({ onAddClick }) => {
-    let input;
-    return (
-        <div>
-            <input ref={node => input = node} />
-            <button onClick={() => {
-                onAddClick(input.value);
-            }}>Add Todo</button>
-        </div>
-    );
-};
+import AddTodo from '../../../src/todo/components/add-todo';
 
 test('renders a text input', () => {
     const addTodo = shallow(<AddTodo/>);
