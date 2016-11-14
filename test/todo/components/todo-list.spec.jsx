@@ -1,15 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-const Todo = () => (<li></li>);
-
-const TodoList = ({ todos }) => (
-    <ul>
-        {todos.map(todo =>
-            <Todo key={todo.id}/>
-        )}
-    </ul>
-);
+import TodoList from '../../../src/todo/components/todo-list';
 
 const render = ({ todos = [] } = {}) => {
     return shallow(
