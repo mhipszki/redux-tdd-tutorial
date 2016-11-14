@@ -51,15 +51,15 @@ test('renders the list of todos', () => {
     const store = createStore(reducer);
     const app = mount(<TodoApp store={store} />);
     const addTodo = () => app.find('button').simulate('click');
-    const list = () => app.find('li');
+    const todos = () => app.find('Todo');
 
     addTodo();
     app.update();
-    expect(list().length).toBe(1);
+    expect(todos().length).toBe(1);
 
     addTodo();
     app.update();
-    expect(list().length).toBe(2);
+    expect(todos().length).toBe(2);
 });
 
 test('shows a filter link to show all todos', () => {
