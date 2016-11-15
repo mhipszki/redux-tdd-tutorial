@@ -1,18 +1,26 @@
 import React from 'react';
 import Link from './link';
 
-const FilterLink = ({ filter, store, children }) => {
-    const currentFilter = store.getState().visibilityFilter;
-    const active = filter === currentFilter;
-    const changeFilter = () => {
-        store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter
-        })
+class FilterLink extends React.Component {
+    componentDidMount() {
+        this.props.store.subscribe(() => {
+            this.forceUpdate();
+        });
     }
-    return (
-        <Link active={active} onClick={changeFilter}>{children}</Link>
-    );
-};
+    render () {
+        const { filter, store, children } = this.props;
+        const currentFilter = store.getState().visibilityFilter;
+        const active = filter === currentFilter;
+        const changeFilter = () => {
+            store.dispatch({
+                type: 'SET_VISIBILITY_FILTER',
+                filter
+            })
+        }
+        return (
+            <Link active={active} onClick={changeFilter}>{children}</Link>
+        );
+    }
+}
 
 export default FilterLink;
