@@ -4,12 +4,14 @@ import { createStore } from 'redux';
 import reducer from '../../../src/reducer/app';
 import FilterLink from '../../../src/todo/components/filter-link';
 
-const render = () => {
-    const store = createStore(reducer);
+const render = ({
+    store = createStore(reducer),
+    filter = ''
+} = {}) => {
     const currentFilter = store.getState().visibilityFilter;
     return shallow(
         <FilterLink
-            filter={currentFilter}
+            filter={filter ? filter : currentFilter}
             store={store}
         >link</FilterLink>
     );
@@ -28,4 +30,13 @@ test('passes children to Link component', () => {
 test('renders active Link when received and current filter are same', () => {
     const link = render();
     expect(link.prop('active')).toBe(true);
+});
+
+test('changes visibility filter when clicked', () => {
+    const store = createStore(reducer);
+    const filter = 'new filter';
+    const link = render({ store, filter });
+    link.simulate('click');
+    const currentFilter = store.getState().visibilityFilter;
+    expect(currentFilter).toEqual('new filter');
 });
