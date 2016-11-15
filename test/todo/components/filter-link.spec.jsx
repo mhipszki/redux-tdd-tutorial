@@ -1,24 +1,27 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { createStore } from 'redux';
 import FilterLink from '../../../src/todo/components/filter-link';
-import visibilityFilter from '../../../src/reducer/visibility-filter';
 
-const store = createStore(visibilityFilter);
-
-const render = ({ currentFilter = 'current filter'} = {}) => shallow(
-    <FilterLink store={store} filter={'filter'} currentFilter={currentFilter}>
-        filter name
-    </FilterLink>
-);
+const render = ({
+    filter = 'filter',
+    currentFilter = 'current filter',
+    onClick = () => {}
+} = {}) => {
+    const props = { filter, currentFilter, onClick };
+    return shallow(<FilterLink {...props}>filter name</FilterLink>);
+};
 
 test('renders an anchor when filter is not current filter', () => {
-    const link = render();
+    const filter = 'filter';
+    const currentFilter = 'another filter';
+    const link = render({ filter, currentFilter });
     expect(link.type()).toEqual('a');
 });
 
 it('renders simple text when filter is current filter', () => {
-    const link = render({ currentFilter: 'filter' });
+    const filter = 'filter';
+    const currentFilter = 'filter';
+    const link = render({ filter, currentFilter });
     expect(link.type()).toEqual('span');
 });
 
@@ -32,8 +35,9 @@ test('points to the same page', () => {
     expect(link.prop('href')).toEqual('#');
 });
 
-test('sets visibility filter when clicked', () => {
-    const link = render();
+test('executes callback when clicked', () => {
+    const onClick = jest.fn();
+    const link = render({ onClick });
     link.simulate('click');
-    expect(store.getState()).toEqual('filter');
+    expect(onClick).toBeCalledWith('filter');
 });
