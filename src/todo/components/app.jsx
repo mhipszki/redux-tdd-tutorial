@@ -20,25 +20,15 @@ const TodoApp = ({ store }) => {
             id
         });
     };
-    const setVisibilityFilter = filter => {
-        store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter
-        })
-    };
     const visibleTodos = getVisibleTodos(
         store.getState().todos,
         store.getState().visibilityFilter
     );
-    const currentFilter = store.getState().visibilityFilter;
     return (
         <div>
             <AddTodo onAddClick={addTodo} />
             <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
-            <Footer
-                currentFilter={currentFilter}
-                onFilterClick={setVisibilityFilter}
-            />
+            <Footer store={store} />
         </div>
     );
 };

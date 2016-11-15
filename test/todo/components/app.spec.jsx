@@ -52,8 +52,7 @@ test('renders footer with filter links', () => {
     const app = shallow(<TodoApp store={store} />);
     expect(app.find('Footer').length).toBe(1);
     const footer = app.find('Footer');
-    const currentFilter = store.getState().visibilityFilter;
-    expect(footer.prop('currentFilter')).toEqual(currentFilter);
+    expect(footer.prop('store')).toEqual(store);
 });
 
 test('shows all todos when Show All filter is selected', () => {
