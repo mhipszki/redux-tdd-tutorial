@@ -5,13 +5,6 @@ import TodoApp from '../../../src/todo/components/app';
 import reducer from '../../../src/reducer/app';
 import getVisibleTodos from '../../../src/todo/get-visible-todos';
 
-it('renders input and button to add a new todo', () => {
-    const store = createStore(reducer);
-    const app = shallow(<TodoApp store={store} />);
-    const addTodo = app.find('AddTodo');
-    expect(addTodo.length).toBe(1);
-});
-
 test('adds a new todo each time the button is clicked', () => {
     const store = createStore(reducer);
     const app = mount(<TodoApp store={store} />);
