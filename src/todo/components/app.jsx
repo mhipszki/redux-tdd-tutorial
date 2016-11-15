@@ -7,7 +7,7 @@ import getVisibleTodos from '../get-visible-todos';
 let nextTodoId = 0;
 
 const TodoApp = ({ store }) => {
-    const onClick = (text) => {
+    const addTodo = (text) => {
         store.dispatch({
             type: 'ADD_TODO',
             id: nextTodoId++,
@@ -20,7 +20,7 @@ const TodoApp = ({ store }) => {
             id
         });
     };
-    const onFilterClick = filter => {
+    const setVisibilityFilter = filter => {
         store.dispatch({
             type: 'SET_VISIBILITY_FILTER',
             filter
@@ -33,11 +33,11 @@ const TodoApp = ({ store }) => {
     const currentFilter = store.getState().visibilityFilter;
     return (
         <div>
-            <AddTodo onAddClick={onClick} />
+            <AddTodo onAddClick={addTodo} />
             <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
             <Footer
                 currentFilter={currentFilter}
-                onFilterClick={onFilterClick}
+                onFilterClick={setVisibilityFilter}
             />
         </div>
     );
