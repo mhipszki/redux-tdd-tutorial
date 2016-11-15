@@ -17,13 +17,13 @@ const TodoApp = ({ store }) => {
     const toggleTodo = id => {
         store.dispatch({
             type: 'TOGGLE_TODO',
-            id: id
+            id
         });
     };
     const onFilterClick = filter => {
         store.dispatch({
             type: 'SET_VISIBILITY_FILTER',
-            filter: filter
+            filter
         })
     };
     const visibleTodos = getVisibleTodos(
