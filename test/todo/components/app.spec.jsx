@@ -59,7 +59,6 @@ test('renders footer with filter links', () => {
     const app = shallow(<TodoApp store={store} />);
     expect(app.find('Footer').length).toBe(1);
     const footer = app.find('Footer');
-    expect(footer.prop('store')).toBe(store);
     const currentFilter = store.getState().visibilityFilter;
     expect(footer.prop('currentFilter')).toEqual(currentFilter);
 });

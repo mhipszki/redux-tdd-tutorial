@@ -1,5 +1,4 @@
 import React from 'react';
-import FilterLink from './filter-link';
 import AddTodo from './add-todo';
 import TodoList from './todo-list';
 import Footer from './footer';
@@ -21,6 +20,12 @@ const TodoApp = ({ store }) => {
             id: id
         });
     };
+    const onFilterClick = filter => {
+        store.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
+            filter: filter
+        })
+    };
     const visibleTodos = getVisibleTodos(
         store.getState().todos,
         store.getState().visibilityFilter
@@ -30,7 +35,10 @@ const TodoApp = ({ store }) => {
         <div>
             <AddTodo onAddClick={onClick} />
             <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
-            <Footer store={store} currentFilter={currentFilter} />
+            <Footer
+                currentFilter={currentFilter}
+                onFilterClick={onFilterClick}
+            />
         </div>
     );
 };
