@@ -3,9 +3,13 @@ import Link from './link';
 
 class FilterLink extends React.Component {
     componentDidMount() {
-        this.props.store.subscribe(() => {
+        const { store } = this.props;
+        this.unsubscribe = store.subscribe(() => {
             this.forceUpdate();
         });
+    }
+    componentWillUnmount() {
+        this.unsubscribe();
     }
     render () {
         const { filter, store, children } = this.props;
