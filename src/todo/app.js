@@ -6,13 +6,7 @@ import TodoApp from './components/app';
 
 const store = createStore(appReducer);
 
-const render = () => {
-    ReactDOM.render(
-        <TodoApp store={store}/>,
-        document.getElementById('root')
-    );
-};
-
-store.subscribe(render);
-
-render();
+ReactDOM.render(
+    <TodoApp store={store}/>,
+    document.getElementById('root')
+);
