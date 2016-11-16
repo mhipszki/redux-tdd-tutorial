@@ -28,20 +28,14 @@ test('adds a new todo each time the button is clicked', () => {
 test('renders the visible list of todos', () => {
     const store = createStore(reducer);
     const app = shallow(<TodoApp store={store} />);
-    const todoList = app.find('TodoList');
-    const { todos, visibilityFilter } = store.getState();
-    const visibleTodos = getVisibleTodos(todos, visibilityFilter);
-    expect(todoList.prop('todos')).toBe(visibleTodos);
+    const todoList = app.find('VisibleTodoList');
+    expect(todoList.prop('store')).toBe(store);
 });
 
 test('toggles todos on click', () => {
     const store = createStore(reducer);
+    store.dispatch({ type: 'ADD_TODO', text: 'todo', id: 0 });
     const app = mount(<TodoApp store={store} />);
-    const input = app.find('input');
-    const button = app.find('button');
-    input.node.value = 'New Todo';
-    button.simulate('click');
-    app.update();
     const todo = app.find('Todo');
     todo.simulate('click');
     expect(store.getState().todos[0].completed).toBe(true);

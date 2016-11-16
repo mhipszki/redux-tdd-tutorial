@@ -35,8 +35,8 @@ test('provides onClick handler for toggling todos', () => {
     const visibleTodoList = render({ store });
     const todoList = visibleTodoList.find('TodoList');
     store.dispatch = jest.fn();
-    const onClick = todoList.prop('onClick');
-    onClick();
+    const toggleTodo = todoList.prop('onTodoClick');
+    toggleTodo();
     expect(store.dispatch).toBeCalledWith({
         type: 'TOGGLE_TODO',
         undefined

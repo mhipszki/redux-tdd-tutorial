@@ -1,8 +1,7 @@
 import React from 'react';
 import AddTodo from './add-todo';
-import TodoList from './todo-list';
+import VisibleTodoList from './visible-todo-list';
 import Footer from './footer';
-import getVisibleTodos from '../get-visible-todos';
 
 let nextTodoId = 0;
 
@@ -14,20 +13,10 @@ const TodoApp = ({ store }) => {
             text
         });
     };
-    const toggleTodo = id => {
-        store.dispatch({
-            type: 'TOGGLE_TODO',
-            id
-        });
-    };
-    const visibleTodos = getVisibleTodos(
-        store.getState().todos,
-        store.getState().visibilityFilter
-    );
     return (
         <div>
             <AddTodo onAddClick={addTodo} />
-            <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
+            <VisibleTodoList store={store} />
             <Footer store={store} />
         </div>
     );

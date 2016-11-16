@@ -23,7 +23,7 @@ class VisibleTodoList extends React.Component {
             })
         }
         return (
-            <TodoList todos={visibleTodos} onClick={toggleTodo} />
+            <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
         );
     }
 }
