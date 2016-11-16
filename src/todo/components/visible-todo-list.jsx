@@ -3,6 +3,10 @@ import TodoList from './todo-list';
 import getVisibleTodos from '../get-visible-todos';
 
 class VisibleTodoList extends React.Component {
+    componentDidMount() {
+        const { store } = this.props;
+        store.subscribe(() => {});
+    }
     render() {
         const { store } = this.props;
         const { todos, visibilityFilter } = store.getState();

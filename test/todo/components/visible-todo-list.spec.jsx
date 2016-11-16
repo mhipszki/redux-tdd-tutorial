@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { createStore } from 'redux';
 import reducer from '../../../src/reducer/app';
 import VisibleTodoList from '../../../src/todo/components/visible-todo-list';
@@ -41,4 +41,11 @@ test('provides onClick handler for toggling todos', () => {
         type: 'TOGGLE_TODO',
         undefined
     });
+});
+
+test('subscribes to store changes', () => {
+    const store = createStore(reducer);
+    store.subscribe = jest.fn();
+    const visibleTodoList = mount(<VisibleTodoList store={store} />);
+    expect(store.subscribe).toBeCalled();
 });
