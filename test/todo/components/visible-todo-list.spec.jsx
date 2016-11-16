@@ -29,3 +29,16 @@ test('retrieves visible todos and passes them to TodoList', () => {
         completed: true
     }]);
 });
+
+test('provides onClick handler for toggling todos', () => {
+    const store = createStore(reducer);
+    const visibleTodoList = render({ store });
+    const todoList = visibleTodoList.find('TodoList');
+    store.dispatch = jest.fn();
+    const onClick = todoList.prop('onClick');
+    onClick();
+    expect(store.dispatch).toBeCalledWith({
+        type: 'TOGGLE_TODO',
+        undefined
+    });
+});
