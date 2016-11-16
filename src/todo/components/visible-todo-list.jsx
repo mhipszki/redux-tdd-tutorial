@@ -5,7 +5,9 @@ import getVisibleTodos from '../get-visible-todos';
 class VisibleTodoList extends React.Component {
     componentDidMount() {
         const { store } = this.props;
-        store.subscribe(() => {});
+        store.subscribe(() => {
+            this.forceUpdate();
+        });
     }
     render() {
         const { store } = this.props;

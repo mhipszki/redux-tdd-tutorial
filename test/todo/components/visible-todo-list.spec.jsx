@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import reducer from '../../../src/reducer/app';
 import VisibleTodoList from '../../../src/todo/components/visible-todo-list';
@@ -7,12 +7,12 @@ import VisibleTodoList from '../../../src/todo/components/visible-todo-list';
 const render = ({
     store = createStore(reducer)
 } = {}) => {
-    return shallow(<VisibleTodoList store={store} />);
+    return mount(<VisibleTodoList store={store} />);
 }
 
 test('renders a TodoList component', () => {
     const visibleTodoList = render();
-    expect(visibleTodoList.type().name).toEqual('TodoList');
+    expect(visibleTodoList.find('TodoList').length).toBe(1);
 });
 
 test('retrieves visible todos and passes them to TodoList', () => {
@@ -46,6 +46,18 @@ test('provides onClick handler for toggling todos', () => {
 test('subscribes to store changes', () => {
     const store = createStore(reducer);
     store.subscribe = jest.fn();
-    const visibleTodoList = mount(<VisibleTodoList store={store} />);
+    const visibleTodoList = render({ store });
     expect(store.subscribe).toBeCalled();
+});
+
+test('is updated on store changes', () => {
+    VisibleTodoList.prototype.forceUpdate = jest.fn();
+    const store = createStore(reducer);
+    store.dispatch({ type: 'ADD_TODO', text: 'todo', id: 0 });
+    const visibleTodoList = render({ store });
+    store.dispatch({
+        type: 'TOGGLE_TODO',
+        id: 0
+    });
+    expect(VisibleTodoList.prototype.forceUpdate).toBeCalled();
 });
