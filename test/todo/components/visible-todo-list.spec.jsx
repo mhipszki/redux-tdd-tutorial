@@ -61,3 +61,16 @@ test('is updated on store changes', () => {
     });
     expect(VisibleTodoList.prototype.forceUpdate).toBeCalled();
 });
+
+test('unsubscribes from store changes when unmounted', () => {
+    VisibleTodoList.prototype.forceUpdate = jest.fn();
+    const store = createStore(reducer);
+    store.dispatch({ type: 'ADD_TODO', text: 'todo', id: 0 });
+    const visibleTodoList = render({ store });
+    visibleTodoList.unmount();
+    store.dispatch({
+        type: 'TOGGLE_TODO',
+        id: 0
+    });
+    expect(VisibleTodoList.prototype.forceUpdate).not.toBeCalled();
+});
