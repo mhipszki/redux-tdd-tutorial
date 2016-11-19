@@ -4,7 +4,7 @@ import getVisibleTodos from '../get-visible-todos';
 
 class VisibleTodoList extends React.Component {
     componentDidMount() {
-        const { store } = this.props;
+        const { store } = this.context;
         this.unsubscribe = store.subscribe(() => {
             this.forceUpdate();
         });
@@ -13,7 +13,7 @@ class VisibleTodoList extends React.Component {
         this.unsubscribe();
     }
     render() {
-        const { store } = this.props;
+        const { store } = this.context;
         const { todos, visibilityFilter } = store.getState();
         const visibleTodos = getVisibleTodos(todos, visibilityFilter);
         const toggleTodo = id => {
@@ -27,5 +27,9 @@ class VisibleTodoList extends React.Component {
         );
     }
 }
+
+VisibleTodoList.contextTypes = {
+    store: React.PropTypes.object
+};
 
 export default VisibleTodoList;

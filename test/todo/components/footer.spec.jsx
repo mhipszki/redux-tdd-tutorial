@@ -1,30 +1,36 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { createStore } from 'redux';
+import reducer from '../../../src/reducer/app';
 import Footer from '../../../src/todo/components/footer';
 
+const getMountOptions = () => {
+    const context = { store: createStore(reducer) };
+    const childContextTypes = {
+        store: React.PropTypes.object
+    }
+    return { context, childContextTypes };
+}
+
+const render = () => mount(<Footer/>, getMountOptions());
+
 test('renders a filter link to show all todos', () => {
-    const store = { getState: () => ({}) };
-    const footer = shallow(<Footer store={store}/>);
+    const footer = render();
     const link = footer.find('FilterLink').at(0);
     expect(link.prop('filter')).toEqual('SHOW_ALL');
-    expect(link.prop('store')).toEqual(store);
     expect(link.render().text()).toEqual('All');
 });
 
 test('renders a filter link to show active todos', () => {
-    const store = { getState: () => ({}) };
-    const footer = shallow(<Footer store={store}/>);
+    const footer = render();
     const link = footer.find('FilterLink').at(1);
     expect(link.prop('filter')).toEqual('SHOW_ACTIVE');
-    expect(link.prop('store')).toEqual(store);
     expect(link.render().text()).toEqual('Active');
 });
 
 test('renders a filter link to show completed todos', () => {
-    const store = { getState: () => ({}) };
-    const footer = shallow(<Footer store={store}/>);
+    const footer = render();
     const link = footer.find('FilterLink').at(2);
     expect(link.prop('filter')).toEqual('SHOW_COMPLETED');
-    expect(link.prop('store')).toEqual(store);
     expect(link.render().text()).toEqual('Completed');
 });

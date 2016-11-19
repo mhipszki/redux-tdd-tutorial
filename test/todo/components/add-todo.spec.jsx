@@ -6,7 +6,10 @@ import AddTodo from '../../../src/todo/components/add-todo';
 
 const render = ({
     store = createStore(reducer)
-} = {}) => mount(<AddTodo store={store} />);
+} = {}) => {
+    const context = { store };
+    return mount(<AddTodo/>, { context });
+}
 
 test('renders a text input', () => {
     const addTodo = render();

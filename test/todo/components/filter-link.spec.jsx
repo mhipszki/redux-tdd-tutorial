@@ -9,12 +9,13 @@ const render = ({
     filter = ''
 } = {}) => {
     const currentFilter = store.getState().visibilityFilter;
-    return mount(
-        <FilterLink
-            filter={filter ? filter : currentFilter}
-            store={store}
-        >link</FilterLink>
+    const context = { store };
+    const component = (
+        <FilterLink filter={filter ? filter : currentFilter}>
+            link
+        </FilterLink>
     );
+    return mount(component, { context });
 }
 
 test('renders a Link component', () => {

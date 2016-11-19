@@ -7,7 +7,8 @@ import VisibleTodoList from '../../../src/todo/components/visible-todo-list';
 const render = ({
     store = createStore(reducer)
 } = {}) => {
-    return mount(<VisibleTodoList store={store} />);
+    const context = { store };
+    return mount(<VisibleTodoList/>, { context });
 }
 
 test('renders a TodoList component', () => {
