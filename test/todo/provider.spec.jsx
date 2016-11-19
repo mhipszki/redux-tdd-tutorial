@@ -1,19 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
-class Provider extends React.Component {
-    getChildContext() {
-        return {
-            store: this.props.store
-        };
-    }
-    render () {
-        return this.props.children;
-    }
-}
-Provider.childContextTypes = {
-    store: React.PropTypes.object
-};
+import Provider from '../../src/todo/provider';
 
 test('renders its children only', () => {
     const provider = shallow(
