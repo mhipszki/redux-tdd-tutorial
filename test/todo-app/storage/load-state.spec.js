@@ -1,4 +1,4 @@
-import loadState from '../../../src/todo-app/storage/load-state';
+import { loadState } from '../../../src/todo-app/storage';
 
 test('returns undefined when storage is not accessible', () => {
     const fakeLocalStorage = {

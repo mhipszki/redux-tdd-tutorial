@@ -1,4 +1,4 @@
-import saveState from '../../../src/todo-app/storage/save-state';
+import { saveState } from '../../../src/todo-app/storage';
 
 test('gracefuly handles inaccessible storage', () => {
     const fakeLocalStorage = {
