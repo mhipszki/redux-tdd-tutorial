@@ -1,4 +1,4 @@
-import app from '../../src/reducer/app';
+import app from '../../../src/todo-app/reducers/app';
 import deepFreeze from 'deep-freeze';
 
 test('sets initial state', () => {

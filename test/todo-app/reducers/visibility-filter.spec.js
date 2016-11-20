@@ -1,4 +1,4 @@
-import visibilityFilter from '../../src/reducer/visibility-filter';
+import visibilityFilter from '../../../src/todo-app/reducers/visibility-filter';
 import deepFreeze from 'deep-freeze';
 
 test('sets initial state', () => {
