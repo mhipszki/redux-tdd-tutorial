@@ -4,8 +4,16 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import appReducer from './reducers/app';
 import TodoApp from './components/app';
+import { loadState, saveState } from './storage';
 
-const store = createStore(appReducer);
+const persistedState = loadState(localStorage);
+
+const store = createStore(appReducer, persistedState);
+
+store.subscribe(() => {
+    saveState(store.getState(), localStorage);
+});
+
 const app = (
     <Provider store={store}>
         <TodoApp/>
