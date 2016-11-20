@@ -1,1 +1,1 @@
-import './todo/app';
+import './todo-app';
