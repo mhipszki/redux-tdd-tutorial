@@ -1,4 +1,4 @@
-import counter from '../../src/counter/reducer';
+import counter from '../src/counter/reducer';
 
 test('increments state', () => {
     expect(counter(0, { type: 'INCREMENT' })).toBe(1);
