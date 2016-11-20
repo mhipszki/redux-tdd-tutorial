@@ -1,9 +1,4 @@
-let nextTodoId = 0;
-const addTodo = (text) => ({
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-});
+import addTodo from '../../src/action-creator/add-todo';
 
 test('returns an ADD_TODO action with next id and text passed in', () => {
     const action = addTodo('todo');
