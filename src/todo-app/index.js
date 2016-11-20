@@ -11,7 +11,10 @@ const persistedState = loadState(localStorage);
 const store = createStore(appReducer, persistedState);
 
 store.subscribe(() => {
-    saveState(store.getState(), localStorage);
+    const state = {
+        todos: store.getState().todos
+    };
+    saveState(state, localStorage);
 });
 
 const app = (
