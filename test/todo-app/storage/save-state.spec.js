@@ -1,6 +1,7 @@
 const saveState = (state, storage) => {
     try {
-        storage.setItem(state);
+        const serializedState = JSON.stringify(state);
+        storage.setItem(serializedState);
     } catch (e) {
         // ignore write errors
     }
@@ -14,4 +15,14 @@ test('gracefuly handles inaccessible storage', () => {
         saveState({ app: 'state' }, fakeLocalStorage);
     }
     expect(save).not.toThrow();
+});
+
+test('stores serialized state to storage', () => {
+    const fakeLocalStorage = {
+        setItem: jest.fn()
+    };
+    saveState({ app: 'state' }, fakeLocalStorage);
+    expect(fakeLocalStorage.setItem).toBeCalledWith(
+        JSON.stringify({ app: 'state' })
+    );
 });
