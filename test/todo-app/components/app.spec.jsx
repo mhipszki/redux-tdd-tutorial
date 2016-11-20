@@ -8,11 +8,16 @@ const getMountOptions = ({
     store = createStore(reducer)
 } = {}) => {
     const context = { store };
-    const childContextTypes = {
-        store: React.PropTypes.object
-    };
+    const childContextTypes = { store: React.PropTypes.object };
     return { context, childContextTypes };
 }
+
+const getInitialState = () => ({
+    todos: [
+        { text: 'todo 1', id: 0, completed: false },
+        { text: 'todo 2', id: 1, completed: true }
+    ]
+});
 
 test('adds a new todo each time the button is clicked', () => {
     const store = createStore(reducer);
@@ -23,15 +28,10 @@ test('adds a new todo each time the button is clicked', () => {
     button.simulate('click');
     input.node.value = 'Another Todo';
     button.simulate('click');
-    expect(store.getState().todos).toEqual([{
-        id: 0,
-        text: 'New Todo',
-        completed: false
-    },{
-        id: 1,
-        text: 'Another Todo',
-        completed: false
-    }]);
+    expect(store.getState().todos).toEqual([
+        { text: 'New Todo', id: 0, completed: false },
+        { text: 'Another Todo', id: 1, completed: false }
+    ]);
 });
 
 test('renders the visible list of todos', () => {
@@ -40,10 +40,9 @@ test('renders the visible list of todos', () => {
 });
 
 test('toggles todos on click', () => {
-    const store = createStore(reducer);
-    store.dispatch({ type: 'ADD_TODO', text: 'todo', id: 0 });
+    const store = createStore(reducer, getInitialState());
     const app = mount(<TodoApp/>, getMountOptions({ store }));
-    const todo = app.find('Todo');
+    const todo = app.find('Todo').first();
     todo.simulate('click');
     expect(store.getState().todos[0].completed).toBe(true);
 });
@@ -54,10 +53,7 @@ test('renders footer with filter links', () => {
 });
 
 test('shows all todos when Show All filter is selected', () => {
-    const store = createStore(reducer);
-    store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
-    store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
-    store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
+    const store = createStore(reducer, getInitialState());
     const app = mount(<TodoApp/>, getMountOptions({ store }));
     const showAll = app.find('Connect(Link)').at(0);
     showAll.simulate('click');
@@ -66,10 +62,7 @@ test('shows all todos when Show All filter is selected', () => {
 });
 
 test('shows active todos when Show Active filter is selected', () => {
-    const store = createStore(reducer);
-    store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
-    store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
-    store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
+    const store = createStore(reducer, getInitialState());
     const app = mount(<TodoApp/>, getMountOptions({ store }));
     const showActive = app.find('Connect(Link)').at(1);
     showActive.simulate('click');
@@ -79,10 +72,7 @@ test('shows active todos when Show Active filter is selected', () => {
 });
 
 test('shows completed todos when Show Completed filter is selected', () => {
-    const store = createStore(reducer);
-    store.dispatch({ type: 'ADD_TODO', text: 'todo 1', id: 0 });
-    store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
-    store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
+    const store = createStore(reducer, getInitialState());
     const app = mount(<TodoApp/>, getMountOptions({ store }));
     const showCompleted = app.find('Connect(Link)').at(2);
     showCompleted.simulate('click');
