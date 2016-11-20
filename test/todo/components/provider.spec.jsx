@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Provider from '../../src/todo/provider';
+import Provider from '../../../src/todo/components/provider';
 
 test('renders its children only', () => {
     const provider = shallow(
