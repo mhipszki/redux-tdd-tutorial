@@ -1,9 +1,8 @@
+import toggleTodo from '../../../action-creator/toggle-todo';
+
 const mapDispatchToProps = (dispatch) => ({
     onTodoClick(id) {
-        dispatch({
-            type: 'TOGGLE_TODO',
-            id
-        });
+        dispatch(toggleTodo(id));
     }
 });
 
