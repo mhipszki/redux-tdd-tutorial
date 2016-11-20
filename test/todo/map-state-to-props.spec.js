@@ -1,13 +1,4 @@
-import getVisibleTodos from '../../src/todo/get-visible-todos';
-
-const mapStateToProps = (state) => {
-    return {
-        todos: getVisibleTodos(
-            state.todos,
-            state.visibilityFilter
-        )
-    };
-};
+import mapStateToProps from '../../src/todo/map-state-to-props';
 
 test('returns visible todos', () => {
     const state = {
