@@ -53,7 +53,6 @@ test('subscribes to store changes', () => {
 });
 
 test('is updated on store changes', () => {
-    VisibleTodoList.prototype.forceUpdate = jest.fn();
     const store = createStore(reducer);
     store.dispatch({ type: 'ADD_TODO', text: 'todo', id: 0 });
     const visibleTodoList = render({ store });
