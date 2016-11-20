@@ -48,7 +48,7 @@ test('provides onClick handler for toggling todos', () => {
 test('subscribes to store changes', () => {
     const store = createStore(reducer);
     store.subscribe = jest.fn();
-    const visibleTodoList = render({ store });
+    render({ store });
     expect(store.subscribe).toBeCalled();
 });
 

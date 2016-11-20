@@ -49,7 +49,7 @@ test('changes visibility filter when clicked', () => {
 test('subscribes to store changes', () => {
     const store = createStore(reducer);
     store.subscribe = jest.fn();
-    const filterLink = render({ store });
+    render({ store });
     expect(store.subscribe).toBeCalled();
 });
 
