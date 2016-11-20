@@ -1,11 +1,4 @@
-const saveState = (state, storage) => {
-    try {
-        const serializedState = JSON.stringify(state);
-        storage.setItem(serializedState);
-    } catch (e) {
-        // ignore write errors
-    }
-};
+import saveState from '../../../src/todo-app/storage/save-state';
 
 test('gracefuly handles inaccessible storage', () => {
     const fakeLocalStorage = {
