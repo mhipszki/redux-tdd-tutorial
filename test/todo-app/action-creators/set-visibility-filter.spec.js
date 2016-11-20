@@ -1,4 +1,4 @@
-import setVisibilityFilter from '../../../src/todo-app/action-creators/set-visibility-filter';
+import { setVisibilityFilter } from '../../../src/todo-app/action-creators';
 
 test('returns a SET_VISIBILITY_FILTER action with given filter', () => {
     const action = setVisibilityFilter('filter');
