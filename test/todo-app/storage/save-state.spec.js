@@ -16,6 +16,7 @@ test('stores serialized state to storage', () => {
     };
     saveState({ app: 'state' }, fakeLocalStorage);
     expect(fakeLocalStorage.setItem).toBeCalledWith(
+        'state',
         JSON.stringify({ app: 'state' })
     );
 });
