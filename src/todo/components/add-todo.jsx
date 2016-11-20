@@ -20,12 +20,6 @@ let AddTodo = ({ dispatch }) => {
     );
 };
 
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-
-AddTodo = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AddTodo);
+AddTodo = connect()(AddTodo);
 
 export default AddTodo;
