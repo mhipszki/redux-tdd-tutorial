@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import reducer from '../../../../src/reducer/app';
-import FilterLink from '../../../../src/todo/components/filter-link';
+import FilterLink from '../../../../src/todo-app/components/filter-link';
 
 const render = ({
     store = createStore(reducer),

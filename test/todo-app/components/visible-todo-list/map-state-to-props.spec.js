@@ -1,5 +1,5 @@
 import mapStateToProps from
-'../../../../src/todo/components/visible-todo-list/map-state-to-props';
+'../../../../src/todo-app/components/visible-todo-list/map-state-to-props';
 
 test('returns an object with a list of visible todos', () => {
     const state = {

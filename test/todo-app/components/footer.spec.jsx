@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import reducer from '../../../src/reducer/app';
-import Footer from '../../../src/todo/components/footer';
+import Footer from '../../../src/todo-app/components/footer';
 
 const getMountOptions = () => {
     const context = { store: createStore(reducer) };

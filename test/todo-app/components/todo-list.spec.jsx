@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TodoList from '../../../src/todo/components/todo-list';
+import TodoList from '../../../src/todo-app/components/todo-list';
 
 const render = ({
     todos = [],

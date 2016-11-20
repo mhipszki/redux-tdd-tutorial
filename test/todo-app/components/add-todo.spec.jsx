@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import reducer from '../../../src/reducer/app';
-import AddTodo from '../../../src/todo/components/add-todo';
+import AddTodo from '../../../src/todo-app/components/add-todo';
 
 const render = ({
     store = createStore(reducer)

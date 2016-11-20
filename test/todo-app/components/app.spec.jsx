@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { createStore } from 'redux';
-import TodoApp from '../../../src/todo/components/app';
+import TodoApp from '../../../src/todo-app/components/app';
 import reducer from '../../../src/reducer/app';
 
 const getMountOptions = ({

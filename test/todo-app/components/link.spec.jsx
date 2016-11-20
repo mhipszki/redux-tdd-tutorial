@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Link from '../../../src/todo/components/link';
+import Link from '../../../src/todo-app/components/link';
 
 const render = ({
     active = false,
