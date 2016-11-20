@@ -1,4 +1,4 @@
-import toggleTodo from '../../src/action-creator/toggle-todo';
+import toggleTodo from '../../../src/todo-app/action-creators/toggle-todo';
 
 test('returns an action to toggle a todo by a given id', () => {
     const action = toggleTodo('todo id');

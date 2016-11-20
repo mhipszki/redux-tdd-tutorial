@@ -1,4 +1,4 @@
-import addTodo from '../../src/action-creator/add-todo';
+import addTodo from '../../../src/todo-app/action-creators/add-todo';
 
 test('returns an ADD_TODO action with next id and text passed in', () => {
     const action = addTodo('todo');

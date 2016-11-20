@@ -1,4 +1,4 @@
-import setVisibilityFilter from '../../../action-creator/set-visibility-filter';
+import setVisibilityFilter from '../../action-creators/set-visibility-filter';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onClick() {

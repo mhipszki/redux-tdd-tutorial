@@ -1,4 +1,4 @@
-import toggleTodo from '../../../action-creator/toggle-todo';
+import toggleTodo from '../../action-creators/toggle-todo';
 
 const mapDispatchToProps = (dispatch) => ({
     onTodoClick(id) {
