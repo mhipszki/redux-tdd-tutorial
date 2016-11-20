@@ -3,7 +3,6 @@ import { shallow, mount } from 'enzyme';
 import { createStore } from 'redux';
 import TodoApp from '../../../src/todo/components/app';
 import reducer from '../../../src/reducer/app';
-import getVisibleTodos from '../../../src/todo/get-visible-todos';
 
 const getMountOptions = ({
     store = createStore(reducer)
