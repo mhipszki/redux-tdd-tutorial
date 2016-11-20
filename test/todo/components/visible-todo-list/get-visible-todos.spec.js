@@ -1,4 +1,5 @@
-import getVisibleTodos from '../../src/todo/get-visible-todos';
+import getVisibleTodos from
+'../../../../src/todo/components/visible-todo-list/get-visible-todos';
 
 test('returns all todos when receives SHOW_ALL filter', () => {
     const allTodos = [{

@@ -1,8 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { createStore } from 'redux';
-import reducer from '../../../src/reducer/app';
-import VisibleTodoList from '../../../src/todo/components/visible-todo-list';
+import reducer from '../../../../src/reducer/app';
+import VisibleTodoList
+from '../..//../../src/todo/components/visible-todo-list';
 
 const render = ({
     store = createStore(reducer)

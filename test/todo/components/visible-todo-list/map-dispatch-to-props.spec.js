@@ -1,4 +1,5 @@
-import mapDispatchToProps from '../../src/todo/map-dispatch-to-props';
+import mapDispatchToProps from
+'../../../../src/todo/components/visible-todo-list/map-dispatch-to-props';
 
 test('returns an object with onTodoClick method to toggle todos', () => {
     const dispatch = jest.fn();
