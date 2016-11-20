@@ -1,11 +1,5 @@
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onClick() {
-        dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter: ownProps.filter
-        });
-    }
-});
+import mapDispatchToProps from
+'../../../../src/todo/components/filter-link/map-dispatch-to-props';
 
 test('returns an object with onClick method to select filter', () => {
     const dispatch = jest.fn();
