@@ -1,6 +1,6 @@
 import mapStateToProps from '../../src/todo/map-state-to-props';
 
-test('returns visible todos', () => {
+test('returns an object with a list of visible todos', () => {
     const state = {
         todos: [{
             completed: false
