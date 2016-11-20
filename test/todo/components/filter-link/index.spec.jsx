@@ -54,14 +54,16 @@ test('subscribes to store changes', () => {
 });
 
 test('is updated on store changes', () => {
-    FilterLink.prototype.forceUpdate = jest.fn();
     const store = createStore(reducer);
-    const filterLink = render({ store });
+    const filter = 'filter';
+    const filterLink = render({ store, filter });
     store.dispatch({
         type: 'SET_VISIBILITY_FILTER',
-        filter: 'new filter'
+        filter: 'filter'
     });
-    expect(FilterLink.prototype.forceUpdate).toBeCalled();
+    filterLink.update();
+    const link = filterLink.find('Link');
+    expect(link.prop('active')).toBe(true);
 });
 
 test('unsubscribes from store changes when unmounted', () => {

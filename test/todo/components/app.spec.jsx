@@ -59,7 +59,7 @@ test('shows all todos when Show All filter is selected', () => {
     store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
     store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
     const app = mount(<TodoApp/>, getMountOptions({ store }));
-    const showAll = app.find('FilterLink').at(0);
+    const showAll = app.find('Connect(Link)').at(0);
     showAll.simulate('click');
     app.update();
     expect(app.find('li').length).toBe(2);
@@ -71,7 +71,7 @@ test('shows active todos when Show Active filter is selected', () => {
     store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
     store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
     const app = mount(<TodoApp/>, getMountOptions({ store }));
-    const showActive = app.find('FilterLink').at(1);
+    const showActive = app.find('Connect(Link)').at(1);
     showActive.simulate('click');
     app.update();
     expect(app.find('li').length).toBe(1);
@@ -84,7 +84,7 @@ test('shows completed todos when Show Completed filter is selected', () => {
     store.dispatch({ type: 'ADD_TODO', text: 'todo 2', id: 1 });
     store.dispatch({ type: 'TOGGLE_TODO', id: 1 });
     const app = mount(<TodoApp/>, getMountOptions({ store }));
-    const showCompleted = app.find('FilterLink').at(2);
+    const showCompleted = app.find('Connect(Link)').at(2);
     showCompleted.simulate('click');
     app.update();
     expect(app.find('li').length).toBe(1);

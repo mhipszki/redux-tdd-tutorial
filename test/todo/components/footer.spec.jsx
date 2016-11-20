@@ -16,21 +16,21 @@ const render = () => mount(<Footer/>, getMountOptions());
 
 test('renders a filter link to show all todos', () => {
     const footer = render();
-    const link = footer.find('FilterLink').at(0);
+    const link = footer.find('Connect(Link)').at(0);
     expect(link.prop('filter')).toEqual('SHOW_ALL');
     expect(link.render().text()).toEqual('All');
 });
 
 test('renders a filter link to show active todos', () => {
     const footer = render();
-    const link = footer.find('FilterLink').at(1);
+    const link = footer.find('Connect(Link)').at(1);
     expect(link.prop('filter')).toEqual('SHOW_ACTIVE');
     expect(link.render().text()).toEqual('Active');
 });
 
 test('renders a filter link to show completed todos', () => {
     const footer = render();
-    const link = footer.find('FilterLink').at(2);
+    const link = footer.find('Connect(Link)').at(2);
     expect(link.prop('filter')).toEqual('SHOW_COMPLETED');
     expect(link.render().text()).toEqual('Completed');
 });
