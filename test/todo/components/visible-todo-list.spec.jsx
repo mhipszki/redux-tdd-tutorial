@@ -33,14 +33,14 @@ test('retrieves visible todos and passes them to TodoList', () => {
 
 test('provides onClick handler for toggling todos', () => {
     const store = createStore(reducer);
+    store.dispatch = jest.fn();
     const visibleTodoList = render({ store });
     const todoList = visibleTodoList.find('TodoList');
-    store.dispatch = jest.fn();
     const toggleTodo = todoList.prop('onTodoClick');
-    toggleTodo();
+    toggleTodo('todo id');
     expect(store.dispatch).toBeCalledWith({
         type: 'TOGGLE_TODO',
-        undefined
+        id: 'todo id'
     });
 });
 
@@ -60,7 +60,13 @@ test('is updated on store changes', () => {
         type: 'TOGGLE_TODO',
         id: 0
     });
-    expect(VisibleTodoList.prototype.forceUpdate).toBeCalled();
+    visibleTodoList.update();
+    const todoList = visibleTodoList.find('TodoList');
+    expect(todoList.prop('todos')).toEqual([{
+        id: 0,
+        text: 'todo',
+        completed: true
+    }]);
 });
 
 test('unsubscribes from store changes when unmounted', () => {

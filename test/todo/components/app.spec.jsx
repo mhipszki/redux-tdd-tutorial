@@ -37,7 +37,7 @@ test('adds a new todo each time the button is clicked', () => {
 
 test('renders the visible list of todos', () => {
     const app = mount(<TodoApp/>, getMountOptions());
-    expect(app.find('VisibleTodoList').length).toBe(1);
+    expect(app.find('Connect(TodoList)').length).toBe(1);
 });
 
 test('toggles todos on click', () => {
