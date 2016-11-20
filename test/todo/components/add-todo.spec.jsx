@@ -26,8 +26,8 @@ test('renders a button to add a new todo', () => {
 
 test('adds a new todo when button is clicked', () => {
     const store = createStore(reducer);
-    const addTodo = render({ store });
     store.dispatch = jest.fn();
+    const addTodo = render({ store });
     const input = addTodo.find('input');
     const button = addTodo.find('button');
     input.node.value = 'new todo';

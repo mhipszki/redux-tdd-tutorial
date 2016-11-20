@@ -1,15 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 let nextTodoId = 0;
 
-const AddTodo = (props, context) => {
+let AddTodo = ({ dispatch }) => {
     let input;
-    const { store } = context;
     return (
         <div>
             <input ref={node => input = node} />
             <button onClick={() => {
-                store.dispatch({
+                dispatch({
                     type: 'ADD_TODO',
                     id: nextTodoId++,
                     text: input.value
@@ -20,8 +20,12 @@ const AddTodo = (props, context) => {
     );
 };
 
-AddTodo.contextTypes = {
-    store: React.PropTypes.object
-};
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({ dispatch });
+
+AddTodo = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddTodo);
 
 export default AddTodo;
