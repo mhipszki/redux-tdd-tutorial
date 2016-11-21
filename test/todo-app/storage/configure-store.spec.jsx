@@ -7,3 +7,13 @@ test('returns a store instance with default state', () => {
         visibilityFilter: 'SHOW_ALL'
     });
 });
+
+test('loads todos from given storage if available', () => {
+    const fakeLocalStorage = {
+        getItem: () => JSON.stringify({
+            todos: 'stored todos'
+        })
+    };
+    const store = configureStore(fakeLocalStorage);
+    expect(store.getState().todos).toEqual('stored todos');
+});
