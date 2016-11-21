@@ -17,3 +17,18 @@ test('loads todos from given storage if available', () => {
     const store = configureStore(fakeLocalStorage);
     expect(store.getState().todos).toEqual('stored todos');
 });
+
+test('persists todos to a given storage on state changes', () => {
+    let storedState;
+    const fakeLocalStorage = {
+        setItem(key, value) {
+            storedState = JSON.parse(value);
+        }
+    };
+    const store = configureStore(fakeLocalStorage);
+    store.dispatch({
+        type: 'ADD_TODO',
+        text: 'new todo'
+    });
+    expect(storedState.todos[0].text).toEqual('new todo');
+});
