@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Link } from 'react-router';
-import FilterLink from '../../../../src/todo-app/components/filter-link';
+import FilterLink from '../../../src/todo-app/components/filter-link';
 
 const render = ({ filter = 'filter' } = {}) => shallow(
     <FilterLink filter={filter}>link</FilterLink>
