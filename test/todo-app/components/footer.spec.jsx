@@ -17,20 +17,20 @@ const render = () => mount(<Footer/>, getMountOptions());
 test('renders a filter link to show all todos', () => {
     const footer = render();
     const link = footer.find('Connect(Link)').at(0);
-    expect(link.prop('filter')).toEqual('SHOW_ALL');
+    expect(link.prop('filter')).toEqual('all');
     expect(link.render().text()).toEqual('All');
 });
 
 test('renders a filter link to show active todos', () => {
     const footer = render();
     const link = footer.find('Connect(Link)').at(1);
-    expect(link.prop('filter')).toEqual('SHOW_ACTIVE');
+    expect(link.prop('filter')).toEqual('active');
     expect(link.render().text()).toEqual('Active');
 });
 
 test('renders a filter link to show completed todos', () => {
     const footer = render();
     const link = footer.find('Connect(Link)').at(2);
-    expect(link.prop('filter')).toEqual('SHOW_COMPLETED');
+    expect(link.prop('filter')).toEqual('completed');
     expect(link.render().text()).toEqual('Completed');
 });

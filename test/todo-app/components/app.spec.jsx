@@ -61,7 +61,7 @@ test('shows all todos when Show All filter is selected', () => {
     expect(app.find('li').length).toBe(2);
 });
 
-test('shows active todos when Show Active filter is selected', () => {
+test.skip('shows active todos when Show Active filter is selected', () => {
     const store = createStore(reducer, getInitialState());
     const app = mount(<TodoApp/>, getMountOptions({ store }));
     const showActive = app.find('Connect(Link)').at(1);
@@ -71,7 +71,7 @@ test('shows active todos when Show Active filter is selected', () => {
     expect(app.find('li').render().text()).toBe('todo 1');
 });
 
-test('shows completed todos when Show Completed filter is selected', () => {
+test.skip('shows completed todos when Show Completed filter is selected', () => {
     const store = createStore(reducer, getInitialState());
     const app = mount(<TodoApp/>, getMountOptions({ store }));
     const showCompleted = app.find('Connect(Link)').at(2);
