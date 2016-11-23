@@ -31,3 +31,12 @@ test('links to route with given filter otherwise', () => {
     const link = filterLink.find('Link');
     expect(link.prop('to')).toEqual('given filter');
 });
+
+test('has active style defined', () => {
+    const filterLink = render();
+    const link = filterLink.find('Link');
+    expect(link.prop('activeStyle')).toEqual({
+        textDecoration: 'none',
+        color: 'black'
+    });
+});
